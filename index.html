@@ -17,7 +17,7 @@
   }
 
   body {
-    background: linear-gradient(135deg, #1a0011 0%, #0d0000 40%, #1a0011 100%);
+    background: #0d0000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,13 +25,25 @@
     position: relative;
   }
 
-  /* ============ FLOATING HEARTS BACKGROUND ============ */
+  /* ============ SUBTLE BACKGROUND GLOW ============ */
+  .bg-glow {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120vw;
+    height: 120vh;
+    background: radial-gradient(ellipse at center, rgba(80, 0, 20, 0.3) 0%, rgba(13, 0, 0, 0) 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ============ FLOATING HEARTS — EDGES ONLY ============ */
   .bg-hearts {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     overflow: hidden;
   }
   .bg-heart {
@@ -41,8 +53,8 @@
   }
   @keyframes floatHeart {
     0%   { opacity: 0; transform: translateY(105vh) rotate(0deg) scale(0.5); }
-    10%  { opacity: 0.6; }
-    90%  { opacity: 0.6; }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.5; }
     100% { opacity: 0; transform: translateY(-5vh) rotate(360deg) scale(1); }
   }
 
@@ -52,55 +64,68 @@
     z-index: 10;
     text-align: center;
     animation: fadeIn 1s ease-out;
-    padding: 20px;
+    padding: 0 24px;
     width: 100%;
-    max-width: 500px;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .bear-gif {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 16px;
-    border-radius: 20px;
-  }
-  .bear-gif img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-
-  .question-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2rem, 7vw, 3.2rem);
-    color: #fff;
-    text-shadow: 0 0 30px rgba(255, 60, 90, 0.6), 0 2px 10px rgba(0,0,0,0.5);
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-  .question-name {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(1.4rem, 5vw, 2rem);
-    color: #ff6b8a;
-    text-shadow: 0 0 20px rgba(255, 107, 138, 0.5);
-    margin-bottom: 35px;
-  }
-
-  .buttons-area {
-    position: relative;
-    min-height: 70px;
+  .bear-container {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .bear-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 16px;
+  }
+  .bear-fallback {
+    font-size: 90px;
+    line-height: 1;
+  }
+
+  .question-line {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    color: #fff;
+    text-shadow: 0 0 25px rgba(255, 60, 90, 0.5), 0 2px 8px rgba(0,0,0,0.5);
+    line-height: 1.2;
+  }
+  .question-line:last-of-type {
+    margin-bottom: 8px;
+  }
+  .question-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+    color: #ff6b8a;
+    text-shadow: 0 0 20px rgba(255, 107, 138, 0.4);
+    margin-bottom: 36px;
+  }
+
+  /* Buttons stacked vertically, clean */
+  .buttons-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
 
   .btn-yes {
-    padding: 16px 48px;
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    padding: 18px 60px;
+    font-size: clamp(1.2rem, 4.5vw, 1.5rem);
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     border: none;
@@ -108,44 +133,45 @@
     cursor: pointer;
     background: linear-gradient(135deg, #ff4d6d, #ff2a52);
     color: white;
-    box-shadow: 0 4px 25px rgba(255, 45, 85, 0.5), 0 0 60px rgba(255, 45, 85, 0.2);
+    box-shadow: 0 4px 25px rgba(255, 45, 85, 0.5), 0 0 50px rgba(255, 45, 85, 0.15);
     transition: all 0.3s ease;
-    position: relative;
     z-index: 20;
     -webkit-appearance: none;
+    width: auto;
+    min-width: 200px;
   }
   .btn-yes:active {
-    transform: scale(1.08);
+    transform: scale(1.06);
     box-shadow: 0 6px 35px rgba(255, 45, 85, 0.7), 0 0 80px rgba(255, 45, 85, 0.3);
   }
 
   .btn-no {
-    padding: 14px 36px;
-    font-size: clamp(1rem, 3.5vw, 1.2rem);
+    padding: 14px 40px;
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
     border-radius: 50px;
     cursor: pointer;
-    background: rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
     transition: all 0.2s ease;
-    position: fixed;
     z-index: 20;
     user-select: none;
     -webkit-appearance: none;
-    /* Start below the Yes button */
-    left: 50%;
-    transform: translateX(-50%);
+    /* Starts in flow, becomes fixed on escape */
+  }
+
+  .btn-no.escaped {
+    position: fixed;
   }
 
   .no-count-msg {
     color: rgba(255, 150, 170, 0.9);
     font-size: clamp(0.85rem, 3vw, 1rem);
-    margin-top: 20px;
-    min-height: 28px;
+    margin-top: 16px;
+    min-height: 24px;
     transition: opacity 0.3s;
-    padding: 0 10px;
   }
 
   /* ============ CELEBRATION SCREEN ============ */
@@ -234,24 +260,25 @@
 </head>
 <body>
 
-<!-- ============ FLOATING HEARTS BACKGROUND ============ -->
+<!-- ============ BACKGROUND ============ -->
+<div class="bg-glow"></div>
 <div class="bg-hearts" id="bgHearts"></div>
 
 <!-- ============ QUESTION SCREEN ============ -->
 <div class="question-screen" id="questionScreen">
-  <div class="bear-gif">
-    <img src="https://media1.tenor.com/m/bfWMVoNsii4AAAAC/cute-love.gif" alt="cute bear" crossorigin="anonymous"
-      onerror="this.parentElement.innerHTML='<div style=&quot;font-size:100px;line-height:160px;&quot;>🧸💕</div>'">
+  <div class="bear-container" id="bearContainer">
+    <img src="https://media1.tenor.com/m/bfWMVoNsii4AAAAC/cute-love.gif" alt="cute bear"
+      onerror="this.parentElement.innerHTML='<div class=bear-fallback>🧸</div>'">
   </div>
 
-  <div class="question-text">Will you be my</div>
-  <div class="question-text" style="margin-bottom: 5px;">Valentine?</div>
+  <div class="question-line">Will you be my</div>
+  <div class="question-line">Valentine?</div>
   <div class="question-name">— Lanping —</div>
 
-  <div class="buttons-area" id="buttonsArea">
+  <div class="buttons-stack" id="buttonsStack">
     <button class="btn-yes" id="btnYes">Yes! ❤️</button>
+    <button class="btn-no" id="btnNo">No 😅</button>
   </div>
-  <button class="btn-no" id="btnNo">No 😅</button>
 
   <div class="no-count-msg" id="noMsg"></div>
 </div>
@@ -269,27 +296,24 @@
 </div>
 
 <script>
-// =====================================================
-// CONFIG
-// =====================================================
 const NAME = "Lanping";
-
-// ============ DETECT MOBILE ============
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// ============ FLOATING BACKGROUND HEARTS ============
+// ============ FLOATING HEARTS — ONLY ON LEFT & RIGHT EDGES ============
 (function() {
   const container = document.getElementById('bgHearts');
-  const hearts = ['❤', '💕', '💗', '♥', '💖', '💘'];
-  const count = isMobile ? 18 : 30;
+  const hearts = ['❤', '💕', '💗', '♥', '💖'];
+  const count = isMobile ? 12 : 20;
   for (let i = 0; i < count; i++) {
     const el = document.createElement('div');
     el.className = 'bg-heart';
     el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-    el.style.left = Math.random() * 100 + '%';
-    el.style.fontSize = (12 + Math.random() * 18) + 'px';
-    el.style.animationDuration = (7 + Math.random() * 10) + 's';
-    el.style.animationDelay = (Math.random() * 12) + 's';
+    // Keep hearts on the edges only (0-15% or 85-100% of screen width)
+    const side = Math.random() > 0.5;
+    el.style.left = side ? (85 + Math.random() * 15) + '%' : (Math.random() * 15) + '%';
+    el.style.fontSize = (10 + Math.random() * 14) + 'px';
+    el.style.animationDuration = (8 + Math.random() * 10) + 's';
+    el.style.animationDelay = (Math.random() * 14) + 's';
     container.appendChild(el);
   }
 })();
@@ -316,71 +340,65 @@ const noMessages = [
   "OK fine... just kidding, TAP YES! 🫶",
 ];
 
-// Position the No button initially below the Yes button
-function initNoPosition() {
-  const yesRect = btnYes.getBoundingClientRect();
-  btnNo.style.top = (yesRect.bottom + 20) + 'px';
-}
-
-// Wait for layout
-setTimeout(initNoPosition, 100);
-
 function getRandomPosition() {
-  const safeMargin = 15;
+  const margin = 20;
   const btnW = btnNo.offsetWidth;
   const btnH = btnNo.offsetHeight;
-  const maxX = window.innerWidth - btnW - safeMargin;
-  const maxY = window.innerHeight - btnH - safeMargin;
-  const x = safeMargin + Math.random() * Math.max(0, maxX - safeMargin);
-  const y = safeMargin + Math.random() * Math.max(0, maxY - safeMargin);
+  const maxX = window.innerWidth - btnW - margin;
+  const maxY = window.innerHeight - btnH - margin;
+  const x = margin + Math.random() * Math.max(0, maxX - margin);
+  const y = margin + Math.random() * Math.max(0, maxY - margin);
   return { x, y };
 }
 
 function escapeNo() {
   noAttempts++;
-  const pos = getRandomPosition();
 
+  // First escape: pop out of flow and become fixed
+  btnNo.classList.add('escaped');
+  const pos = getRandomPosition();
   btnNo.style.left = pos.x + 'px';
   btnNo.style.top = pos.y + 'px';
-  btnNo.style.transform = 'none';
-  btnNo.style.transition = 'left 0.15s ease, top 0.15s ease, font-size 0.2s ease, padding 0.2s ease, opacity 0.2s ease';
+  btnNo.style.transition = 'left 0.15s ease, top 0.15s ease, opacity 0.2s ease';
 
-  // Shrink No button text + padding, grow Yes button
-  const shrinkFont = Math.max(0.7, 1 - noAttempts * 0.04);
-  const growScale = Math.min(1.6, 1 + noAttempts * 0.07);
-  btnNo.style.fontSize = `calc(clamp(1rem, 3.5vw, 1.2rem) * ${shrinkFont})`;
-  btnNo.style.opacity = Math.max(0.4, 1 - noAttempts * 0.04);
+  // Shrink No, grow Yes
+  const shrinkFont = Math.max(0.65, 1 - noAttempts * 0.05);
+  const growScale = Math.min(1.5, 1 + noAttempts * 0.06);
+  btnNo.style.fontSize = `calc(clamp(1rem, 3.5vw, 1.15rem) * ${shrinkFont})`;
+  btnNo.style.opacity = Math.max(0.35, 1 - noAttempts * 0.05);
 
   btnYes.style.transform = `scale(${growScale})`;
   btnYes.style.boxShadow = `0 6px ${25 + noAttempts * 5}px rgba(255, 45, 85, ${Math.min(0.85, 0.5 + noAttempts * 0.03)})`;
 
-  // Show funny messages
+  // Funny message
   const msgIdx = Math.min(noAttempts - 1, noMessages.length - 1);
   noMsg.textContent = noMessages[msgIdx];
   noMsg.style.opacity = '1';
 }
 
-// === Mobile: escape on TOUCH (tap) ===
+// Mobile: escape on tap
 btnNo.addEventListener('touchstart', function(e) {
   e.preventDefault();
   e.stopPropagation();
   escapeNo();
 }, { passive: false });
 
-// === Desktop: escape on hover AND click ===
+// Desktop: escape on hover + click
 btnNo.addEventListener('mouseenter', escapeNo);
 btnNo.addEventListener('click', function(e) {
   e.preventDefault();
   escapeNo();
 });
 
-// ============ YES BUTTON — CELEBRATION ============
+// ============ YES — CELEBRATION ============
+let celebrated = false;
 function showCelebration() {
+  if (celebrated) return;
+  celebrated = true;
   document.getElementById('questionScreen').style.display = 'none';
   document.getElementById('bgHearts').style.display = 'none';
   btnNo.style.display = 'none';
-  const celeb = document.getElementById('celebScreen');
-  celeb.classList.add('active');
+  document.getElementById('celebScreen').classList.add('active');
   startHeartAnimation();
   launchConfetti();
 }
@@ -419,7 +437,6 @@ function launchConfetti() {
     }, i * 35);
   }
 
-  // Second wave
   setTimeout(() => {
     for (let i = 0; i < 40; i++) {
       setTimeout(() => {
@@ -436,7 +453,7 @@ function launchConfetti() {
   }, 3000);
 }
 
-// ============ HEART PARTICLE CANVAS (celebration) ============
+// ============ HEART PARTICLE CANVAS ============
 function startHeartAnimation() {
   const canvas = document.getElementById('heartCanvas');
   const ctx = canvas.getContext('2d');
@@ -452,11 +469,9 @@ function startHeartAnimation() {
   function heartX(t) { return 16 * Math.pow(Math.sin(t), 3); }
   function heartY(t) { return -(13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t)); }
 
-  // Fewer particles on mobile for smooth performance
   const outlineCount = isMobile ? 500 : 1000;
   const innerCount = isMobile ? 300 : 600;
-  // Slightly smaller heart on mobile
-  const baseMultiplier = isMobile ? 0.7 : 1;
+  const baseMultiplier = isMobile ? 0.65 : 1;
 
   class Particle {
     constructor(inner) {
