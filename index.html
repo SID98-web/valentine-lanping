@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>A Question For You... ❤️</title>
+<title>❤️</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap');
 
@@ -11,7 +11,7 @@
 
   html, body {
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     overflow: hidden;
     touch-action: manipulation;
   }
@@ -22,163 +22,106 @@
     justify-content: center;
     align-items: center;
     font-family: 'Quicksand', sans-serif;
-    position: relative;
-  }
-
-  /* ============ SUBTLE BACKGROUND GLOW ============ */
-  .bg-glow {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120vw;
-    height: 120vh;
-    background: radial-gradient(ellipse at center, rgba(80, 0, 20, 0.3) 0%, rgba(13, 0, 0, 0) 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ============ FLOATING HEARTS — EDGES ONLY ============ */
-  .bg-hearts {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .bg-heart {
-    position: absolute;
-    opacity: 0;
-    animation: floatHeart linear infinite;
-  }
-  @keyframes floatHeart {
-    0%   { opacity: 0; transform: translateY(105vh) rotate(0deg) scale(0.5); }
-    10%  { opacity: 0.5; }
-    90%  { opacity: 0.5; }
-    100% { opacity: 0; transform: translateY(-5vh) rotate(360deg) scale(1); }
   }
 
   /* ============ QUESTION SCREEN ============ */
   .question-screen {
-    position: relative;
     z-index: 10;
     text-align: center;
-    animation: fadeIn 1s ease-out;
-    padding: 0 24px;
+    padding: 0 28px;
     width: 100%;
-    max-width: 420px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0;
+    animation: fadeIn 1s ease-out;
   }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   .bear-container {
-    width: 140px;
-    height: 140px;
-    margin-bottom: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
   }
   .bear-container img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 16px;
-  }
-  .bear-fallback {
-    font-size: 90px;
-    line-height: 1;
   }
 
   .question-line {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    font-size: clamp(2.4rem, 8.5vw, 3.2rem);
     color: #fff;
-    text-shadow: 0 0 25px rgba(255, 60, 90, 0.5), 0 2px 8px rgba(0,0,0,0.5);
-    line-height: 1.2;
+    text-shadow: 0 0 20px rgba(255, 60, 90, 0.5);
+    line-height: 1.15;
   }
-  .question-line:last-of-type {
-    margin-bottom: 8px;
-  }
+
   .question-name {
     font-family: 'Dancing Script', cursive;
     font-size: clamp(1.5rem, 5.5vw, 2rem);
     color: #ff6b8a;
-    text-shadow: 0 0 20px rgba(255, 107, 138, 0.4);
-    margin-bottom: 36px;
-  }
-
-  /* Buttons stacked vertically, clean */
-  .buttons-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    width: 100%;
+    text-shadow: 0 0 15px rgba(255, 107, 138, 0.4);
+    margin-top: 6px;
+    margin-bottom: 32px;
   }
 
   .btn-yes {
-    padding: 18px 60px;
+    padding: 18px 56px;
     font-size: clamp(1.2rem, 4.5vw, 1.5rem);
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     border: none;
     border-radius: 50px;
-    cursor: pointer;
     background: linear-gradient(135deg, #ff4d6d, #ff2a52);
     color: white;
-    box-shadow: 0 4px 25px rgba(255, 45, 85, 0.5), 0 0 50px rgba(255, 45, 85, 0.15);
+    box-shadow: 0 4px 25px rgba(255, 45, 85, 0.5);
     transition: all 0.3s ease;
     z-index: 20;
     -webkit-appearance: none;
-    width: auto;
     min-width: 200px;
+    cursor: pointer;
   }
   .btn-yes:active {
     transform: scale(1.06);
-    box-shadow: 0 6px 35px rgba(255, 45, 85, 0.7), 0 0 80px rgba(255, 45, 85, 0.3);
+    box-shadow: 0 6px 35px rgba(255, 45, 85, 0.7);
   }
 
   .btn-no {
-    padding: 14px 40px;
-    font-size: clamp(1rem, 3.5vw, 1.15rem);
+    margin-top: 14px;
+    padding: 13px 36px;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
     border: 2px solid rgba(255,255,255,0.2);
     border-radius: 50px;
-    cursor: pointer;
     background: rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.55);
     transition: all 0.2s ease;
     z-index: 20;
     user-select: none;
     -webkit-appearance: none;
-    /* Starts in flow, becomes fixed on escape */
+    cursor: pointer;
   }
-
   .btn-no.escaped {
     position: fixed;
+    margin-top: 0;
   }
 
-  .no-count-msg {
+  .no-msg {
     color: rgba(255, 150, 170, 0.9);
     font-size: clamp(0.85rem, 3vw, 1rem);
-    margin-top: 16px;
-    min-height: 24px;
-    transition: opacity 0.3s;
+    margin-top: 18px;
+    min-height: 22px;
   }
 
   /* ============ CELEBRATION SCREEN ============ */
-  .celebration-screen {
+  .celeb-screen {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     z-index: 100;
     display: none;
     justify-content: center;
@@ -186,145 +129,71 @@
     flex-direction: column;
     background: #0a0a0a;
   }
-  .celebration-screen.active {
-    display: flex;
-    animation: fadeIn 0.5s ease-out;
-  }
+  .celeb-screen.active { display: flex; animation: fadeIn 0.5s ease-out; }
+  .celeb-screen canvas { position: fixed; inset: 0; z-index: 1; }
 
-  .celebration-screen canvas {
-    position: fixed;
-    top: 0; left: 0;
-    z-index: 1;
-  }
-
-  .celebration-content {
+  .celeb-content {
     position: relative;
     z-index: 10;
     text-align: center;
     pointer-events: none;
     padding: 20px;
   }
-  .celeb-emoji {
-    font-size: clamp(3rem, 10vw, 4.5rem);
-    margin-bottom: 10px;
-    animation: bounceIn 0.6s ease-out 0.5s both;
-  }
-  .celeb-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2.5rem, 9vw, 4rem);
-    color: #fff;
-    text-shadow: 0 0 30px rgba(255, 60, 90, 0.8), 0 0 60px rgba(255, 60, 90, 0.4);
-    animation: bounceIn 0.6s ease-out 0.8s both;
-  }
-  .celeb-subtitle {
-    font-size: clamp(1rem, 3.5vw, 1.3rem);
-    color: rgba(255, 180, 200, 0.9);
-    margin-top: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    animation: bounceIn 0.6s ease-out 1.1s both;
-  }
-  .celeb-name {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2rem, 7vw, 2.8rem);
-    color: #ff6b8a;
-    margin-top: 8px;
-    text-shadow: 0 0 20px rgba(255, 107, 138, 0.6);
-    animation: bounceIn 0.6s ease-out 1.4s both;
-  }
-  @keyframes bounceIn {
+  .celeb-emoji { font-size: clamp(3rem, 10vw, 4.5rem); margin-bottom: 10px; animation: pop 0.6s ease-out 0.5s both; }
+  .celeb-title { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 9vw, 4rem); color: #fff; text-shadow: 0 0 30px rgba(255,60,90,0.8); animation: pop 0.6s ease-out 0.8s both; }
+  .celeb-sub { font-size: clamp(1rem, 3.5vw, 1.3rem); color: rgba(255,180,200,0.9); margin-top: 12px; letter-spacing: 4px; text-transform: uppercase; animation: pop 0.6s ease-out 1.1s both; }
+  .celeb-name { font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 7vw, 2.8rem); color: #ff6b8a; margin-top: 8px; text-shadow: 0 0 20px rgba(255,107,138,0.6); animation: pop 0.6s ease-out 1.4s both; }
+  @keyframes pop {
     0%   { opacity: 0; transform: scale(0.3) translateY(20px); }
     50%  { opacity: 1; transform: scale(1.05); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
   }
 
-  /* Confetti */
-  .confetti-container {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    overflow: hidden;
-  }
-  .confetti-piece {
-    position: absolute;
-    top: -20px;
-    animation: confettiFall linear forwards;
-  }
-  @keyframes confettiFall {
-    0%   { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+  .confetti-box { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
+  .confetti-piece { position: absolute; top: -20px; animation: fall linear forwards; }
+  @keyframes fall {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
     100% { opacity: 0; transform: translateY(105vh) rotate(720deg) scale(0.5); }
   }
 </style>
 </head>
 <body>
 
-<!-- ============ BACKGROUND ============ -->
-<div class="bg-glow"></div>
-<div class="bg-hearts" id="bgHearts"></div>
-
-<!-- ============ QUESTION SCREEN ============ -->
-<div class="question-screen" id="questionScreen">
-  <div class="bear-container" id="bearContainer">
-    <img src="https://media1.tenor.com/m/bfWMVoNsii4AAAAC/cute-love.gif" alt="cute bear"
-      onerror="this.parentElement.innerHTML='<div class=bear-fallback>🧸</div>'">
+<div class="question-screen" id="qScreen">
+  <div class="bear-container">
+    <img src="https://media1.tenor.com/m/bfWMVoNsii4AAAAC/cute-love.gif" alt="🧸"
+      onerror="this.parentElement.textContent='🧸'">
   </div>
 
   <div class="question-line">Will you be my</div>
   <div class="question-line">Valentine?</div>
   <div class="question-name">— Lanping —</div>
 
-  <div class="buttons-stack" id="buttonsStack">
-    <button class="btn-yes" id="btnYes">Yes! ❤️</button>
-    <button class="btn-no" id="btnNo">No 😅</button>
-  </div>
+  <button class="btn-yes" id="btnYes">Yes! ❤️</button>
+  <button class="btn-no" id="btnNo">No 😅</button>
 
-  <div class="no-count-msg" id="noMsg"></div>
+  <div class="no-msg" id="noMsg"></div>
 </div>
 
-<!-- ============ CELEBRATION SCREEN ============ -->
-<div class="celebration-screen" id="celebScreen">
+<div class="celeb-screen" id="celebScreen">
   <canvas id="heartCanvas"></canvas>
-  <div class="confetti-container" id="confettiContainer"></div>
-  <div class="celebration-content">
+  <div class="confetti-box" id="confettiBox"></div>
+  <div class="celeb-content">
     <div class="celeb-emoji">🥰</div>
     <div class="celeb-title">Yayyy!</div>
-    <div class="celeb-subtitle">Happy Valentine's Day</div>
+    <div class="celeb-sub">Happy Valentine's Day</div>
     <div class="celeb-name">Lanping ❤️</div>
   </div>
 </div>
 
 <script>
-const NAME = "Lanping";
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-// ============ FLOATING HEARTS — ONLY ON LEFT & RIGHT EDGES ============
-(function() {
-  const container = document.getElementById('bgHearts');
-  const hearts = ['❤', '💕', '💗', '♥', '💖'];
-  const count = isMobile ? 12 : 20;
-  for (let i = 0; i < count; i++) {
-    const el = document.createElement('div');
-    el.className = 'bg-heart';
-    el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-    // Keep hearts on the edges only (0-15% or 85-100% of screen width)
-    const side = Math.random() > 0.5;
-    el.style.left = side ? (85 + Math.random() * 15) + '%' : (Math.random() * 15) + '%';
-    el.style.fontSize = (10 + Math.random() * 14) + 'px';
-    el.style.animationDuration = (8 + Math.random() * 10) + 's';
-    el.style.animationDelay = (Math.random() * 14) + 's';
-    container.appendChild(el);
-  }
-})();
-
-// ============ RUNAWAY "NO" BUTTON ============
 const btnNo = document.getElementById('btnNo');
 const btnYes = document.getElementById('btnYes');
 const noMsg = document.getElementById('noMsg');
 
 let noAttempts = 0;
-const noMessages = [
+const msgs = [
   "Are you sure? 🥺",
   "Really?? Think again... 😢",
   "You're breaking my heart! 💔",
@@ -340,227 +209,160 @@ const noMessages = [
   "OK fine... just kidding, TAP YES! 🫶",
 ];
 
-function getRandomPosition() {
-  const margin = 20;
-  const btnW = btnNo.offsetWidth;
-  const btnH = btnNo.offsetHeight;
-  const maxX = window.innerWidth - btnW - margin;
-  const maxY = window.innerHeight - btnH - margin;
-  const x = margin + Math.random() * Math.max(0, maxX - margin);
-  const y = margin + Math.random() * Math.max(0, maxY - margin);
-  return { x, y };
-}
-
 function escapeNo() {
   noAttempts++;
-
-  // First escape: pop out of flow and become fixed
   btnNo.classList.add('escaped');
-  const pos = getRandomPosition();
-  btnNo.style.left = pos.x + 'px';
-  btnNo.style.top = pos.y + 'px';
+
+  const m = 20, w = btnNo.offsetWidth, h = btnNo.offsetHeight;
+  const x = m + Math.random() * Math.max(0, window.innerWidth - w - m * 2);
+  const y = m + Math.random() * Math.max(0, window.innerHeight - h - m * 2);
+  btnNo.style.left = x + 'px';
+  btnNo.style.top = y + 'px';
   btnNo.style.transition = 'left 0.15s ease, top 0.15s ease, opacity 0.2s ease';
 
-  // Shrink No, grow Yes
-  const shrinkFont = Math.max(0.65, 1 - noAttempts * 0.05);
-  const growScale = Math.min(1.5, 1 + noAttempts * 0.06);
-  btnNo.style.fontSize = `calc(clamp(1rem, 3.5vw, 1.15rem) * ${shrinkFont})`;
-  btnNo.style.opacity = Math.max(0.35, 1 - noAttempts * 0.05);
+  const shrink = Math.max(0.6, 1 - noAttempts * 0.05);
+  const grow = Math.min(1.45, 1 + noAttempts * 0.06);
+  btnNo.style.fontSize = (shrink * 100) + '%';
+  btnNo.style.opacity = Math.max(0.3, 1 - noAttempts * 0.06);
 
-  btnYes.style.transform = `scale(${growScale})`;
-  btnYes.style.boxShadow = `0 6px ${25 + noAttempts * 5}px rgba(255, 45, 85, ${Math.min(0.85, 0.5 + noAttempts * 0.03)})`;
+  btnYes.style.transform = 'scale(' + grow + ')';
+  btnYes.style.boxShadow = '0 6px ' + (25 + noAttempts * 5) + 'px rgba(255,45,85,' + Math.min(0.85, 0.5 + noAttempts * 0.03) + ')';
 
-  // Funny message
-  const msgIdx = Math.min(noAttempts - 1, noMessages.length - 1);
-  noMsg.textContent = noMessages[msgIdx];
-  noMsg.style.opacity = '1';
+  noMsg.textContent = msgs[Math.min(noAttempts - 1, msgs.length - 1)];
 }
 
-// Mobile: escape on tap
-btnNo.addEventListener('touchstart', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  escapeNo();
-}, { passive: false });
-
-// Desktop: escape on hover + click
+btnNo.addEventListener('touchstart', function(e) { e.preventDefault(); escapeNo(); }, { passive: false });
 btnNo.addEventListener('mouseenter', escapeNo);
-btnNo.addEventListener('click', function(e) {
-  e.preventDefault();
-  escapeNo();
-});
+btnNo.addEventListener('click', function(e) { e.preventDefault(); escapeNo(); });
 
-// ============ YES — CELEBRATION ============
-let celebrated = false;
-function showCelebration() {
-  if (celebrated) return;
-  celebrated = true;
-  document.getElementById('questionScreen').style.display = 'none';
-  document.getElementById('bgHearts').style.display = 'none';
+// YES
+let done = false;
+function celebrate() {
+  if (done) return;
+  done = true;
+  document.getElementById('qScreen').style.display = 'none';
   btnNo.style.display = 'none';
   document.getElementById('celebScreen').classList.add('active');
-  startHeartAnimation();
-  launchConfetti();
+  startHeart();
+  startConfetti();
 }
+btnYes.addEventListener('click', celebrate);
+btnYes.addEventListener('touchend', function(e) { e.preventDefault(); celebrate(); });
 
-btnYes.addEventListener('click', showCelebration);
-btnYes.addEventListener('touchend', function(e) {
-  e.preventDefault();
-  showCelebration();
-});
-
-// ============ CONFETTI ============
-function launchConfetti() {
-  const container = document.getElementById('confettiContainer');
-  const colors = ['#ff4d6d','#ff85a1','#fbb1bd','#fff0f3','#ff2a52','#ff6b8a','#ffd6e0','#c9184a','#ffccd5','#ff0a54'];
+// CONFETTI
+function startConfetti() {
+  const box = document.getElementById('confettiBox');
   const shapes = ['❤','💖','💗','💕','✨','🌹','💝','♥'];
-  const count = isMobile ? 60 : 100;
-
-  for (let i = 0; i < count; i++) {
+  const colors = ['#ff4d6d','#ff85a1','#fbb1bd','#ff2a52','#ff6b8a','#c9184a','#ff0a54'];
+  const n = isMobile ? 60 : 100;
+  for (let i = 0; i < n; i++) {
     setTimeout(() => {
-      const piece = document.createElement('div');
-      piece.className = 'confetti-piece';
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
       if (Math.random() > 0.4) {
-        piece.textContent = shapes[Math.floor(Math.random() * shapes.length)];
-        piece.style.fontSize = (14 + Math.random() * 18) + 'px';
+        p.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+        p.style.fontSize = (14 + Math.random() * 18) + 'px';
       } else {
-        piece.style.width = (8 + Math.random() * 8) + 'px';
-        piece.style.height = (8 + Math.random() * 8) + 'px';
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        p.style.width = (8 + Math.random() * 8) + 'px';
+        p.style.height = p.style.width;
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
       }
-      piece.style.left = Math.random() * 100 + '%';
-      piece.style.animationDuration = (2 + Math.random() * 3) + 's';
-      piece.style.animationDelay = (Math.random() * 0.5) + 's';
-      container.appendChild(piece);
-      setTimeout(() => piece.remove(), 6000);
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (2 + Math.random() * 3) + 's';
+      box.appendChild(p);
+      setTimeout(() => p.remove(), 6000);
     }, i * 35);
   }
-
+  // wave 2
   setTimeout(() => {
     for (let i = 0; i < 40; i++) {
       setTimeout(() => {
-        const piece = document.createElement('div');
-        piece.className = 'confetti-piece';
-        piece.textContent = shapes[Math.floor(Math.random() * shapes.length)];
-        piece.style.fontSize = (16 + Math.random() * 16) + 'px';
-        piece.style.left = Math.random() * 100 + '%';
-        piece.style.animationDuration = (2.5 + Math.random() * 3) + 's';
-        container.appendChild(piece);
-        setTimeout(() => piece.remove(), 6000);
+        const p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+        p.style.fontSize = (16 + Math.random() * 16) + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+        box.appendChild(p);
+        setTimeout(() => p.remove(), 6000);
       }, i * 50);
     }
   }, 3000);
 }
 
-// ============ HEART PARTICLE CANVAS ============
-function startHeartAnimation() {
-  const canvas = document.getElementById('heartCanvas');
-  const ctx = canvas.getContext('2d');
+// HEART CANVAS
+function startHeart() {
+  const c = document.getElementById('heartCanvas');
+  const ctx = c.getContext('2d');
   let W, H;
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
+  function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', resize);
 
-  function heartX(t) { return 16 * Math.pow(Math.sin(t), 3); }
-  function heartY(t) { return -(13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t)); }
+  const hx = t => 16 * Math.pow(Math.sin(t), 3);
+  const hy = t => -(13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t));
+  const sc = isMobile ? 0.6 : 1;
+  const oN = isMobile ? 450 : 1000;
+  const iN = isMobile ? 250 : 600;
 
-  const outlineCount = isMobile ? 500 : 1000;
-  const innerCount = isMobile ? 300 : 600;
-  const baseMultiplier = isMobile ? 0.65 : 1;
-
-  class Particle {
+  class P {
     constructor(inner) {
-      this.angle = Math.random() * Math.PI * 2;
-      this.baseScale = (inner ? (Math.random() * 0.85) * 9 : 8 + Math.random() * 2.5) * baseMultiplier;
-      this.offsetX = (Math.random()-0.5) * 3;
-      this.offsetY = (Math.random()-0.5) * 3;
-      this.size = inner ? 0.8 + Math.random()*1 : 1 + Math.random()*1.8;
-      this.brightness = inner ? 0.4 + Math.random()*0.4 : 0.5 + Math.random()*0.5;
-      this.pulseOffset = Math.random() * Math.PI * 2;
-      this.pulseSpeed = 0.5 + Math.random() * 1.5;
-    }
-    getPos(beat) {
-      const s = this.baseScale * (1 + beat * 0.18);
-      return { x: W/2 + heartX(this.angle)*s + this.offsetX, y: H/2 + heartY(this.angle)*s + this.offsetY - 30 };
+      this.a = Math.random() * Math.PI * 2;
+      this.s = (inner ? Math.random() * 0.85 * 9 : 8 + Math.random() * 2.5) * sc;
+      this.ox = (Math.random()-0.5)*3; this.oy = (Math.random()-0.5)*3;
+      this.sz = inner ? 0.8+Math.random() : 1+Math.random()*1.8;
+      this.br = inner ? 0.4+Math.random()*0.4 : 0.5+Math.random()*0.5;
+      this.po = Math.random()*Math.PI*2; this.ps = 0.5+Math.random()*1.5;
     }
     draw(beat, t) {
-      const p = this.getPos(beat);
-      const pulse = 0.6 + 0.4 * Math.sin(t * this.pulseSpeed + this.pulseOffset);
-      const alpha = this.brightness * pulse * (0.7 + beat*0.3);
-      const glow = this.size * (1 + beat*0.5);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, glow, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255, 40, 70, ${alpha})`;
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, glow*0.35, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255, ${150+beat*80|0}, ${170+beat*60|0}, ${alpha*0.8})`;
-      ctx.fill();
+      const ss = this.s*(1+beat*0.18);
+      const x = W/2+hx(this.a)*ss+this.ox, y = H/2+hy(this.a)*ss+this.oy-30;
+      const pulse = 0.6+0.4*Math.sin(t*this.ps+this.po);
+      const al = this.br*pulse*(0.7+beat*0.3);
+      const g = this.sz*(1+beat*0.5);
+      ctx.beginPath(); ctx.arc(x,y,g,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(255,40,70,'+al+')'; ctx.fill();
+      ctx.beginPath(); ctx.arc(x,y,g*0.35,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(255,'+(150+beat*80|0)+','+(170+beat*60|0)+','+al*0.8+')'; ctx.fill();
     }
   }
+  const ps = [];
+  for (let i=0;i<oN;i++) ps.push(new P(false));
+  for (let i=0;i<iN;i++) ps.push(new P(true));
 
-  const particles = [];
-  for (let i = 0; i < outlineCount; i++) particles.push(new Particle(false));
-  for (let i = 0; i < innerCount; i++) particles.push(new Particle(true));
-
-  class Sparkle {
-    constructor() { this.reset(); }
-    reset() {
-      this.angle = Math.random() * Math.PI * 2;
-      const s = (8 + Math.random()*3) * baseMultiplier;
-      this.x = W/2 + heartX(this.angle)*s + (Math.random()-0.5)*20;
-      this.y = H/2 + heartY(this.angle)*s + (Math.random()-0.5)*20 - 30;
-      this.vx = (Math.random()-0.5)*2;
-      this.vy = -1-Math.random()*2;
-      this.life = 1;
-      this.decay = 0.005 + Math.random()*0.015;
-      this.size = 1 + Math.random()*3;
+  class S {
+    constructor(){this.reset();}
+    reset(){
+      this.a=Math.random()*Math.PI*2;
+      const ss=(8+Math.random()*3)*sc;
+      this.x=W/2+hx(this.a)*ss+(Math.random()-0.5)*20;
+      this.y=H/2+hy(this.a)*ss+(Math.random()-0.5)*20-30;
+      this.vx=(Math.random()-0.5)*2;this.vy=-1-Math.random()*2;
+      this.l=1;this.d=0.005+Math.random()*0.015;this.sz=1+Math.random()*3;
     }
-    update() {
-      this.x += this.vx; this.y += this.vy; this.life -= this.decay;
-      if (this.life <= 0) this.reset();
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size*this.life, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255, 180, 200, ${this.life*0.8})`;
-      ctx.fill();
-    }
+    update(){this.x+=this.vx;this.y+=this.vy;this.l-=this.d;if(this.l<=0)this.reset();}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.sz*this.l,0,Math.PI*2);ctx.fillStyle='rgba(255,180,200,'+this.l*0.8+')';ctx.fill();}
   }
+  const sps=[]; for(let i=0;i<(isMobile?35:80);i++) sps.push(new S());
 
-  const sparkleCount = isMobile ? 40 : 80;
-  const sparkles = [];
-  for (let i = 0; i < sparkleCount; i++) sparkles.push(new Sparkle());
-
-  let time = 0;
-  function animate() {
-    time += 0.03;
-    const cyc = time % (Math.PI*2);
-    let beat = 0;
-    if (cyc < 0.8) beat = Math.sin(cyc/0.8*Math.PI);
-    else if (cyc > 1.2 && cyc < 1.8) beat = Math.sin((cyc-1.2)/0.6*Math.PI)*0.6;
-    beat = Math.max(0, beat);
-
-    ctx.fillStyle = 'rgba(10,10,10,0.15)';
-    ctx.fillRect(0,0,W,H);
-
-    const grad = ctx.createRadialGradient(W/2,H/2-30,0,W/2,H/2-30,200);
-    grad.addColorStop(0, `rgba(255,40,70,${0.08+beat*0.06})`);
-    grad.addColorStop(1, 'rgba(10,10,10,0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,W,H);
-
-    for (const p of particles) p.draw(beat, time);
-    for (const s of sparkles) { s.update(); s.draw(); }
-
-    requestAnimationFrame(animate);
-  }
-  animate();
+  let t=0;
+  (function loop(){
+    t+=0.03;
+    const cyc=t%(Math.PI*2);
+    let beat=0;
+    if(cyc<0.8) beat=Math.sin(cyc/0.8*Math.PI);
+    else if(cyc>1.2&&cyc<1.8) beat=Math.sin((cyc-1.2)/0.6*Math.PI)*0.6;
+    beat=Math.max(0,beat);
+    ctx.fillStyle='rgba(10,10,10,0.15)';ctx.fillRect(0,0,W,H);
+    const gr=ctx.createRadialGradient(W/2,H/2-30,0,W/2,H/2-30,200);
+    gr.addColorStop(0,'rgba(255,40,70,'+(0.08+beat*0.06)+')');
+    gr.addColorStop(1,'rgba(10,10,10,0)');
+    ctx.fillStyle=gr;ctx.fillRect(0,0,W,H);
+    for(const p of ps) p.draw(beat,t);
+    for(const s of sps){s.update();s.draw();}
+    requestAnimationFrame(loop);
+  })();
 }
 </script>
 </body>
