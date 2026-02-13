@@ -150,6 +150,29 @@
     0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
     100% { opacity: 0; transform: translateY(105vh) rotate(720deg) scale(0.5); }
   }
+
+  /* ============ MEMORY BUBBLES ============ */
+  .memory-bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+  .mem-bubble {
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255,100,130,0.4);
+    box-shadow: 0 0 15px rgba(255,60,90,0.3), 0 0 30px rgba(255,60,90,0.1);
+    opacity: 0;
+    animation: bubbleFloat linear infinite;
+  }
+  .mem-bubble img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @keyframes bubbleFloat {
+    0%   { opacity: 0; transform: translateY(110vh) scale(0.6); }
+    8%   { opacity: 0.85; }
+    92%  { opacity: 0.85; }
+    100% { opacity: 0; transform: translateY(-15vh) scale(1); }
+  }
 </style>
 </head>
 <body>
@@ -169,6 +192,7 @@
 
 <div class="celeb-screen" id="celebScreen">
   <canvas id="heartCanvas"></canvas>
+  <div class="memory-bubbles" id="memBubbles"></div>
   <div class="confetti-box" id="confettiBox"></div>
   <div class="celeb-content">
     <div class="celeb-emoji">🥰</div>
@@ -237,6 +261,7 @@ function celebrate() {
   document.getElementById('celebScreen').classList.add('active');
   startHeart();
   startConfetti();
+  startMemoryBubbles();
 }
 btnYes.addEventListener('click', celebrate);
 btnYes.addEventListener('touchend', function(e) { e.preventDefault(); celebrate(); });
@@ -281,6 +306,52 @@ function startConfetti() {
       }, i * 50);
     }
   }, 3000);
+}
+
+// MEMORY BUBBLES
+function startMemoryBubbles() {
+  const box = document.getElementById('memBubbles');
+  const photos = [
+    'photos/dsc00037.jpg',
+    'photos/img_4413.jpg',
+    'photos/img_6221.jpg',
+    'photos/img_6140.jpg',
+    'photos/img_6090.jpg',
+    'photos/img_6068.jpg',
+    'photos/img_6042.jpg',
+    'photos/img_5754.jpg',
+    'photos/img_5740.jpg',
+  ];
+
+  function spawnBubble(idx) {
+    const b = document.createElement('div');
+    b.className = 'mem-bubble';
+    const size = isMobile ? (50 + Math.random() * 30) : (60 + Math.random() * 50);
+    b.style.width = size + 'px';
+    b.style.height = size + 'px';
+    b.style.left = (5 + Math.random() * 90) + '%';
+    const dur = 12 + Math.random() * 10;
+    b.style.animationDuration = dur + 's';
+    b.style.animationDelay = '0s';
+    const img = document.createElement('img');
+    img.src = photos[idx % photos.length];
+    img.alt = '';
+    b.appendChild(img);
+    box.appendChild(b);
+    setTimeout(() => { b.remove(); }, dur * 1000);
+  }
+
+  // Stagger the initial bubbles
+  for (let i = 0; i < photos.length; i++) {
+    setTimeout(() => spawnBubble(i), i * 2500);
+  }
+
+  // Keep spawning continuously
+  let ci = 0;
+  setInterval(() => {
+    spawnBubble(ci);
+    ci = (ci + 1) % photos.length;
+  }, 3500);
 }
 
 // HEART CANVAS
